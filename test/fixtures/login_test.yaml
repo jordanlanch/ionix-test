@@ -1,0 +1,568 @@
+---
+version: 2
+interactions:
+    - id: 0
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 34
+        transfer_encoding: []
+        trailer: {}
+        host: 127.0.0.1:42783
+        remote_addr: ""
+        request_uri: ""
+        body: '{"email":"jordan.dev93@gmail.com"}'
+        form: {}
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        url: http://127.0.0.1:42783/signup
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 68
+        uncompressed: false
+        body: '{"message":"[ERROR] invalid payload [(root): password is required]"}'
+        headers:
+            Content-Length:
+                - "68"
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Thu, 28 Mar 2024 23:38:52 GMT
+        status: 400 Bad Request
+        code: 400
+        duration: 395.549µs
+    - id: 1
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 34
+        transfer_encoding: []
+        trailer: {}
+        host: 127.0.0.1:42783
+        remote_addr: ""
+        request_uri: ""
+        body: '{"email":"jordan.dev93@gmail.com"}'
+        form: {}
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        url: http://127.0.0.1:42783/login
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 49
+        uncompressed: false
+        body: '{"message":"User not found with the given email"}'
+        headers:
+            Content-Length:
+                - "49"
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Thu, 28 Mar 2024 23:38:52 GMT
+        status: 404 Not Found
+        code: 404
+        duration: 2.322897ms
+    - id: 2
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 57
+        transfer_encoding: []
+        trailer: {}
+        host: 127.0.0.1:42783
+        remote_addr: ""
+        request_uri: ""
+        body: '{"email":"jordan.dev93@gmail.com","password":"pass1234*"}'
+        form: {}
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        url: http://127.0.0.1:42783/signup
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 310
+        uncompressed: false
+        body: '{"accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvcmRhbi5kZXY5M0BnbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNzExNjc2MzMyfQ.ZPDjos-J5YW52bmufzlWv9XwSC36sxvpMrU553LqiDI","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzEyMjczOTMyfQ.9wH3FUKd8iNDsP8ML1B9nhe1-TnlhKwR5vHHdlK1LjY"}'
+        headers:
+            Content-Length:
+                - "310"
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Thu, 28 Mar 2024 23:38:52 GMT
+        status: 200 OK
+        code: 200
+        duration: 43.65137ms
+    - id: 3
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 57
+        transfer_encoding: []
+        trailer: {}
+        host: 127.0.0.1:42783
+        remote_addr: ""
+        request_uri: ""
+        body: '{"email":"jordan.dev93@gmail.com","password":"pass1234*"}'
+        form: {}
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        url: http://127.0.0.1:42783/login
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 310
+        uncompressed: false
+        body: '{"accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvcmRhbi5kZXY5M0BnbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNzExNjc2MzMyfQ.ZPDjos-J5YW52bmufzlWv9XwSC36sxvpMrU553LqiDI","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzEyMjczOTMyfQ.9wH3FUKd8iNDsP8ML1B9nhe1-TnlhKwR5vHHdlK1LjY"}'
+        headers:
+            Content-Length:
+                - "310"
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Thu, 28 Mar 2024 23:38:52 GMT
+        status: 200 OK
+        code: 200
+        duration: 47.51276ms
+    - id: 4
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 126
+        transfer_encoding: []
+        trailer: {}
+        host: 127.0.0.1:42783
+        remote_addr: ""
+        request_uri: ""
+        body: '{"id":0,"name":"Vacuna Prueba","approved":true,"min_dose":1,"max_dose":2,"available_at":"2024-03-28T18:38:52.985907781-05:00"}'
+        form: {}
+        headers:
+            Authorization:
+                - Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvcmRhbi5kZXY5M0BnbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNzExNjc2MzMyfQ.ZPDjos-J5YW52bmufzlWv9XwSC36sxvpMrU553LqiDI
+            Content-Type:
+                - application/json; charset=utf-8
+        url: http://127.0.0.1:42783/drugs
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 126
+        uncompressed: false
+        body: '{"id":1,"name":"Vacuna Prueba","approved":true,"min_dose":1,"max_dose":2,"available_at":"2024-03-28T18:38:52.985907781-05:00"}'
+        headers:
+            Content-Length:
+                - "126"
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Thu, 28 Mar 2024 23:38:52 GMT
+        status: 201 Created
+        code: 201
+        duration: 3.033315ms
+    - id: 5
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 138
+        transfer_encoding: []
+        trailer: {}
+        host: 127.0.0.1:42783
+        remote_addr: ""
+        request_uri: ""
+        body: '{"id":0,"name":"Vacuna Prueba Actualizada","approved":true,"min_dose":1,"max_dose":2,"available_at":"2024-03-28T18:38:52.992219461-05:00"}'
+        form: {}
+        headers:
+            Authorization:
+                - Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvcmRhbi5kZXY5M0BnbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNzExNjc2MzMyfQ.ZPDjos-J5YW52bmufzlWv9XwSC36sxvpMrU553LqiDI
+            Content-Type:
+                - application/json; charset=utf-8
+        url: http://127.0.0.1:42783/drugs/1
+        method: PUT
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 39
+        uncompressed: false
+        body: '{"message":"Drug updated successfully"}'
+        headers:
+            Content-Length:
+                - "39"
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Thu, 28 Mar 2024 23:38:52 GMT
+        status: 200 OK
+        code: 200
+        duration: 2.458994ms
+    - id: 6
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: 127.0.0.1:42783
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Authorization:
+                - Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvcmRhbi5kZXY5M0BnbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNzExNjc2MzMyfQ.ZPDjos-J5YW52bmufzlWv9XwSC36sxvpMrU553LqiDI
+        url: http://127.0.0.1:42783/drugs/1
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 130
+        uncompressed: false
+        body: '{"id":1,"name":"Vacuna Prueba Actualizada","approved":true,"min_dose":1,"max_dose":2,"available_at":"2024-03-28T18:38:52.992219Z"}'
+        headers:
+            Content-Length:
+                - "130"
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Thu, 28 Mar 2024 23:38:52 GMT
+        status: 200 OK
+        code: 200
+        duration: 709.884µs
+    - id: 7
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: 127.0.0.1:42783
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Authorization:
+                - Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvcmRhbi5kZXY5M0BnbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNzExNjc2MzMyfQ.ZPDjos-J5YW52bmufzlWv9XwSC36sxvpMrU553LqiDI
+        url: http://127.0.0.1:42783/drugs
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 132
+        uncompressed: false
+        body: '[{"id":1,"name":"Vacuna Prueba Actualizada","approved":true,"min_dose":1,"max_dose":2,"available_at":"2024-03-28T18:38:52.992219Z"}]'
+        headers:
+            Content-Length:
+                - "132"
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Thu, 28 Mar 2024 23:38:53 GMT
+        status: 200 OK
+        code: 200
+        duration: 640.218µs
+    - id: 8
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: 127.0.0.1:42783
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Authorization:
+                - Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvcmRhbi5kZXY5M0BnbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNzExNjc2MzMyfQ.ZPDjos-J5YW52bmufzlWv9XwSC36sxvpMrU553LqiDI
+        url: http://127.0.0.1:42783/drugs/1
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 39
+        uncompressed: false
+        body: '{"message":"Drug deleted successfully"}'
+        headers:
+            Content-Length:
+                - "39"
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Thu, 28 Mar 2024 23:38:53 GMT
+        status: 200 OK
+        code: 200
+        duration: 2.508321ms
+    - id: 9
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 126
+        transfer_encoding: []
+        trailer: {}
+        host: 127.0.0.1:42783
+        remote_addr: ""
+        request_uri: ""
+        body: '{"id":0,"name":"Vacuna Prueba","approved":true,"min_dose":1,"max_dose":2,"available_at":"2024-03-28T18:38:53.010405911-05:00"}'
+        form: {}
+        headers:
+            Authorization:
+                - Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvcmRhbi5kZXY5M0BnbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNzExNjc2MzMyfQ.ZPDjos-J5YW52bmufzlWv9XwSC36sxvpMrU553LqiDI
+            Content-Type:
+                - application/json; charset=utf-8
+        url: http://127.0.0.1:42783/drugs
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 126
+        uncompressed: false
+        body: '{"id":2,"name":"Vacuna Prueba","approved":true,"min_dose":1,"max_dose":2,"available_at":"2024-03-28T18:38:53.010405911-05:00"}'
+        headers:
+            Content-Length:
+                - "126"
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Thu, 28 Mar 2024 23:38:53 GMT
+        status: 201 Created
+        code: 201
+        duration: 4.737214ms
+    - id: 10
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 92
+        transfer_encoding: []
+        trailer: {}
+        host: 127.0.0.1:42783
+        remote_addr: ""
+        request_uri: ""
+        body: '{"id":0,"name":"John Doe","drug_id":2,"dose":1,"date":"2024-03-28T18:38:53.020475734-05:00"}'
+        form: {}
+        headers:
+            Authorization:
+                - Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvcmRhbi5kZXY5M0BnbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNzExNjc2MzMyfQ.ZPDjos-J5YW52bmufzlWv9XwSC36sxvpMrU553LqiDI
+            Content-Type:
+                - application/json; charset=utf-8
+        url: http://127.0.0.1:42783/vaccination
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 92
+        uncompressed: false
+        body: '{"id":1,"name":"John Doe","drug_id":2,"dose":1,"date":"2024-03-28T18:38:53.020475734-05:00"}'
+        headers:
+            Content-Length:
+                - "92"
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Thu, 28 Mar 2024 23:38:53 GMT
+        status: 201 Created
+        code: 201
+        duration: 3.774545ms
+    - id: 11
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 104
+        transfer_encoding: []
+        trailer: {}
+        host: 127.0.0.1:42783
+        remote_addr: ""
+        request_uri: ""
+        body: '{"id":0,"name":"Jane Doe Actualizada","drug_id":2,"dose":2,"date":"2024-03-28T18:38:53.028800896-05:00"}'
+        form: {}
+        headers:
+            Authorization:
+                - Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvcmRhbi5kZXY5M0BnbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNzExNjc2MzMyfQ.ZPDjos-J5YW52bmufzlWv9XwSC36sxvpMrU553LqiDI
+            Content-Type:
+                - application/json; charset=utf-8
+        url: http://127.0.0.1:42783/vaccination/1
+        method: PUT
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 46
+        uncompressed: false
+        body: '{"message":"Vaccination updated successfully"}'
+        headers:
+            Content-Length:
+                - "46"
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Thu, 28 Mar 2024 23:38:53 GMT
+        status: 200 OK
+        code: 200
+        duration: 6.676679ms
+    - id: 12
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: 127.0.0.1:42783
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Authorization:
+                - Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvcmRhbi5kZXY5M0BnbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNzExNjc2MzMyfQ.ZPDjos-J5YW52bmufzlWv9XwSC36sxvpMrU553LqiDI
+        url: http://127.0.0.1:42783/vaccination/1
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 94
+        uncompressed: false
+        body: '{"id":1,"name":"Jane Doe Actualizada","drug_id":2,"dose":2,"date":"2024-03-28T18:38:53.0288Z"}'
+        headers:
+            Content-Length:
+                - "94"
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Thu, 28 Mar 2024 23:38:53 GMT
+        status: 200 OK
+        code: 200
+        duration: 1.641421ms
+    - id: 13
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: 127.0.0.1:42783
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Authorization:
+                - Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvcmRhbi5kZXY5M0BnbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNzExNjc2MzMyfQ.ZPDjos-J5YW52bmufzlWv9XwSC36sxvpMrU553LqiDI
+        url: http://127.0.0.1:42783/vaccination
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 96
+        uncompressed: false
+        body: '[{"id":1,"name":"Jane Doe Actualizada","drug_id":2,"dose":2,"date":"2024-03-28T18:38:53.0288Z"}]'
+        headers:
+            Content-Length:
+                - "96"
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Thu, 28 Mar 2024 23:38:53 GMT
+        status: 200 OK
+        code: 200
+        duration: 3.055228ms
+    - id: 14
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: 127.0.0.1:42783
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Authorization:
+                - Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvcmRhbi5kZXY5M0BnbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNzExNjc2MzMyfQ.ZPDjos-J5YW52bmufzlWv9XwSC36sxvpMrU553LqiDI
+        url: http://127.0.0.1:42783/vaccination/1
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 46
+        uncompressed: false
+        body: '{"message":"Vaccination deleted successfully"}'
+        headers:
+            Content-Length:
+                - "46"
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Thu, 28 Mar 2024 23:38:53 GMT
+        status: 200 OK
+        code: 200
+        duration: 5.086288ms

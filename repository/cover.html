@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>repository: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">github.com/jordanlanch/ionix-test/repository/drug_repository.go (94.4%)</option>
+				
+				<option value="file1">github.com/jordanlanch/ionix-test/repository/user_repository.go (89.5%)</option>
+				
+				<option value="file2">github.com/jordanlanch/ionix-test/repository/vaccination_repository.go (95.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">no coverage</span>
+				<span class="cov1">low coverage</span>
+				<span class="cov2">*</span>
+				<span class="cov3">*</span>
+				<span class="cov4">*</span>
+				<span class="cov5">*</span>
+				<span class="cov6">*</span>
+				<span class="cov7">*</span>
+				<span class="cov8">*</span>
+				<span class="cov9">*</span>
+				<span class="cov10">high coverage</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package repository
+
+import (
+        "context"
+
+        "github.com/jordanlanch/ionix-test/domain"
+        "gorm.io/gorm"
+)
+
+type drugRepository struct {
+        db    *gorm.DB
+}
+
+// NewDrugRepository crea una nueva instancia de DrugRepository
+func NewDrugRepository(db *gorm.DB) domain.DrugRepository <span class="cov7" title="4">{
+        return &amp;drugRepository{db}
+}</span>
+
+// Create añade una nueva instancia de Drug a la base de datos
+func (r *drugRepository) Create(ctx context.Context, drug *domain.Drug) error <span class="cov10" title="8">{
+        result := r.db.WithContext(ctx).Create(drug)
+        return result.Error
+}</span>
+
+// Update modifica una instancia existente de Drug en la base de datos
+func (r *drugRepository) Update(ctx context.Context, id int, drug *domain.Drug) error <span class="cov1" title="1">{
+        result := r.db.WithContext(ctx).Model(&amp;domain.Drug{}).Where("id = ?", id).Updates(drug)
+        return result.Error
+}</span>
+
+// FindByID busca una instancia de Drug por su ID
+func (r *drugRepository) FindByID(ctx context.Context, id int) (*domain.Drug, error) <span class="cov4" title="2">{
+        var drug domain.Drug
+        result := r.db.WithContext(ctx).First(&amp;drug, "id = ?", id)
+        if result.Error != nil </span><span class="cov1" title="1">{
+                return nil, result.Error
+        }</span>
+        <span class="cov1" title="1">return &amp;drug, nil</span>
+}
+
+// FindAll retorna todas las instancias de Drug de la base de datos con paginación
+func (r *drugRepository) FindAll(ctx context.Context, pagination *domain.Pagination) ([]*domain.Drug, error) <span class="cov1" title="1">{
+        var drugs []*domain.Drug
+        db := r.db.WithContext(ctx)
+        db = applyPagination(db, pagination)
+
+        if err := db.Find(&amp;drugs).Error; err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov1" title="1">return drugs, nil</span>
+}
+
+// Delete elimina una instancia de Drug de la base de datos
+func (r *drugRepository) Delete(ctx context.Context, id int) error <span class="cov1" title="1">{
+        result := r.db.WithContext(ctx).Delete(&amp;domain.Drug{}, id)
+        return result.Error
+}</span>
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">package repository
+
+import (
+        "context"
+
+        "github.com/jordanlanch/ionix-test/domain"
+        "gorm.io/gorm"
+)
+
+type userRepository struct {
+        db    *gorm.DB
+}
+
+func NewUserRepository(db *gorm.DB) domain.UserRepository <span class="cov10" title="4">{
+        return &amp;userRepository{db}
+}</span>
+
+func (r *userRepository) Create(ctx context.Context, user *domain.User) (*domain.User, error) <span class="cov1" title="1">{
+        result := r.db.WithContext(ctx).Create(user)
+        if result.Error != nil </span><span class="cov0" title="0">{
+                return nil, result.Error
+        }</span>
+        <span class="cov1" title="1">return user, nil</span>
+}
+
+func (r *userRepository) FindByID(ctx context.Context, id int) (*domain.User, error) <span class="cov5" title="2">{
+        var user domain.User
+        result := r.db.WithContext(ctx).First(&amp;user, "id = ?", id)
+        if result.Error != nil </span><span class="cov1" title="1">{
+                return nil, result.Error
+        }</span>
+        <span class="cov1" title="1">return &amp;user, nil</span>
+}
+
+func (r *userRepository) FindByEmail(ctx context.Context, email string) (*domain.User, error) <span class="cov5" title="2">{
+        var user domain.User
+        result := r.db.WithContext(ctx).First(&amp;user, "email = ?", email)
+        if result.Error != nil </span><span class="cov1" title="1">{
+                return nil, result.Error
+        }</span>
+        <span class="cov1" title="1">return &amp;user, nil</span>
+}
+
+func (r *userRepository) Update(ctx context.Context, user *domain.User) (*domain.User, error) <span class="cov1" title="1">{
+        result := r.db.WithContext(ctx).Save(user)
+        if result.Error != nil </span><span class="cov0" title="0">{
+                return nil, result.Error
+        }</span>
+        <span class="cov1" title="1">return user, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">package repository
+
+import (
+        "context"
+
+        "github.com/jordanlanch/ionix-test/domain"
+        "gorm.io/gorm"
+)
+
+type vaccinationRepository struct {
+        db *gorm.DB
+}
+
+func NewVaccinationRepository(db *gorm.DB) domain.VaccinationRepository <span class="cov7" title="5">{
+        return &amp;vaccinationRepository{db}
+}</span>
+
+func (r *vaccinationRepository) Create(ctx context.Context, vac *domain.Vaccination) error <span class="cov10" title="9">{
+        return r.db.WithContext(ctx).Create(vac).Error
+}</span>
+
+func (r *vaccinationRepository) Update(ctx context.Context, id int, vac *domain.Vaccination) error <span class="cov1" title="1">{
+        return r.db.WithContext(ctx).Model(&amp;domain.Vaccination{}).Where("id = ?", id).Updates(vac).Error
+}</span>
+
+func (r *vaccinationRepository) FindByID(ctx context.Context, id int) (*domain.Vaccination, error) <span class="cov5" title="3">{
+        var vac domain.Vaccination
+        if err := r.db.WithContext(ctx).First(&amp;vac, "id = ?", id).Error; err != nil </span><span class="cov1" title="1">{
+                return nil, err
+        }</span>
+        <span class="cov3" title="2">return &amp;vac, nil</span>
+}
+
+func (r *vaccinationRepository) FindAll(ctx context.Context, pagination *domain.Pagination) ([]*domain.Vaccination, error) <span class="cov1" title="1">{
+        var vacs []*domain.Vaccination
+        db := r.db.WithContext(ctx)
+        db = applyPagination(db, pagination)
+
+        if err := db.Find(&amp;vacs).Error; err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov1" title="1">return vacs, nil</span>
+}
+
+func (r *vaccinationRepository) Delete(ctx context.Context, id int) error <span class="cov1" title="1">{
+        return r.db.WithContext(ctx).Delete(&amp;domain.Vaccination{}, id).Error
+}</span>
+
+// applyPagination aplica la paginación a la consulta de base de datos.
+func applyPagination(db *gorm.DB, pagination *domain.Pagination) *gorm.DB <span class="cov3" title="2">{
+        if pagination != nil </span><span class="cov3" title="2">{
+                if pagination.Limit != nil </span><span class="cov3" title="2">{
+                        db = db.Limit(*pagination.Limit)
+                }</span>
+                <span class="cov3" title="2">if pagination.Offset != nil </span><span class="cov3" title="2">{
+                        db = db.Offset(*pagination.Offset)
+                }</span>
+        }
+        <span class="cov3" title="2">return db</span>
+}
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>

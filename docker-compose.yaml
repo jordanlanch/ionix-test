@@ -1,0 +1,43 @@
+version: '3.5'
+
+services:
+
+  db:
+    image: postgres:14.0-alpine
+    volumes:
+      - dbstore:/var/lib/postgresql/ionix-test-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_DB: ionix-test-db
+    networks:
+      - ionix-net
+  api:
+    depends_on:
+      - db
+    volumes:
+      - .:/go/src/github.com/jordanlanch/ionix-test
+    environment:
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: password
+      DATABASE_NAME: ionix-test-db
+      DATABASE_HOSTNAME: db
+      DATABASE_PORT: 5432
+    env_file:
+      - .env
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:8080"
+    entrypoint: sh -c 'sleep 15 && goose -dir storage/migrations postgres "host=db user=postgres password=password dbname=ionix-test-db port=5432 sslmode=disable" up && watcher'
+    networks:
+      - ionix-net
+
+volumes:
+  dbstore:
+networks:
+  ionix-net:
+    external: true
+    name: ionix-net

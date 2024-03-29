@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>usecase: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">github.com/jordanlanch/ionix-test/usecase/drug_usecase.go (100.0%)</option>
+				
+				<option value="file1">github.com/jordanlanch/ionix-test/usecase/login_usecase.go (100.0%)</option>
+				
+				<option value="file2">github.com/jordanlanch/ionix-test/usecase/refresh_token_usecase.go (70.0%)</option>
+				
+				<option value="file3">github.com/jordanlanch/ionix-test/usecase/signup_usecase.go (75.0%)</option>
+				
+				<option value="file4">github.com/jordanlanch/ionix-test/usecase/vaccination_usecase.go (81.2%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">no coverage</span>
+				<span class="cov1">low coverage</span>
+				<span class="cov2">*</span>
+				<span class="cov3">*</span>
+				<span class="cov4">*</span>
+				<span class="cov5">*</span>
+				<span class="cov6">*</span>
+				<span class="cov7">*</span>
+				<span class="cov8">*</span>
+				<span class="cov9">*</span>
+				<span class="cov10">high coverage</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package usecase
+
+import (
+        "context"
+        "time"
+
+        "github.com/jordanlanch/ionix-test/domain"
+)
+
+type DrugUsecase struct {
+        drugRepo       domain.DrugRepository
+        contextTimeout time.Duration
+}
+
+func NewDrugUsecase(drugRepo domain.DrugRepository, timeout time.Duration) domain.DrugUsecase <span class="cov10" title="5">{
+        return &amp;DrugUsecase{
+                drugRepo:       drugRepo,
+                contextTimeout: timeout,
+        }
+}</span>
+
+func (du *DrugUsecase) CreateDrug(ctx context.Context, drug *domain.Drug) error <span class="cov4" title="2">{
+        ctx, cancel := context.WithTimeout(ctx, du.contextTimeout)
+        defer cancel()
+
+        return du.drugRepo.Create(ctx, drug)
+}</span>
+
+func (du *DrugUsecase) UpdateDrug(ctx context.Context, id int, drug *domain.Drug) error <span class="cov4" title="2">{
+        ctx, cancel := context.WithTimeout(ctx, du.contextTimeout)
+        defer cancel()
+
+        return du.drugRepo.Update(ctx, id, drug)
+}</span>
+
+func (du *DrugUsecase) GetDrugById(ctx context.Context, id int) (*domain.Drug, error) <span class="cov4" title="2">{
+        ctx, cancel := context.WithTimeout(ctx, du.contextTimeout)
+        defer cancel()
+
+        return du.drugRepo.FindByID(ctx, id)
+}</span>
+
+func (du *DrugUsecase) GetAllDrugs(ctx context.Context, pagination *domain.Pagination) ([]*domain.Drug, error) <span class="cov4" title="2">{
+        ctx, cancel := context.WithTimeout(ctx, du.contextTimeout)
+        defer cancel()
+
+        return du.drugRepo.FindAll(ctx, pagination)
+}</span>
+
+func (du *DrugUsecase) DeleteDrug(ctx context.Context, id int) error <span class="cov4" title="2">{
+        ctx, cancel := context.WithTimeout(ctx, du.contextTimeout)
+        defer cancel()
+
+        return du.drugRepo.Delete(ctx, id)
+}</span>
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">package usecase
+
+import (
+        "context"
+        "time"
+
+        "github.com/jordanlanch/ionix-test/domain"
+        "github.com/jordanlanch/ionix-test/internal/tokenutil"
+)
+
+type loginUsecase struct {
+        userRepository domain.UserRepository
+        contextTimeout time.Duration
+}
+
+func NewLoginUsecase(userRepository domain.UserRepository, timeout time.Duration) domain.LoginUsecase <span class="cov10" title="5">{
+        return &amp;loginUsecase{
+                userRepository: userRepository,
+                contextTimeout: timeout,
+        }
+}</span>
+
+func (lu *loginUsecase) GetUserByEmail(ctx context.Context, email string) (*domain.User, error) <span class="cov4" title="2">{
+        _, cancel := context.WithTimeout(ctx, lu.contextTimeout)
+        defer cancel()
+        return lu.userRepository.FindByEmail(ctx, email)
+}</span>
+
+func (lu *loginUsecase) CreateAccessToken(user *domain.User, secret string, expiry int) (accessToken string, err error) <span class="cov1" title="1">{
+        return tokenutil.CreateAccessToken(user, secret, expiry)
+}</span>
+
+func (lu *loginUsecase) CreateRefreshToken(user *domain.User, secret string, expiry int) (refreshToken string, err error) <span class="cov1" title="1">{
+        return tokenutil.CreateRefreshToken(user, secret, expiry)
+}</span>
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">package usecase
+
+import (
+        "context"
+        "time"
+
+        "github.com/jordanlanch/ionix-test/domain"
+        "github.com/jordanlanch/ionix-test/internal/tokenutil"
+)
+
+type refreshTokenUsecase struct {
+        userRepository domain.UserRepository
+        contextTimeout time.Duration
+}
+
+func NewRefreshTokenUsecase(userRepository domain.UserRepository, timeout time.Duration) domain.RefreshTokenUsecase <span class="cov10" title="7">{
+        return &amp;refreshTokenUsecase{
+                userRepository: userRepository,
+                contextTimeout: timeout,
+        }
+}</span>
+
+func (rtu *refreshTokenUsecase) GetUserByID(c context.Context, id int) (*domain.User, error) <span class="cov0" title="0">{
+        ctx, cancel := context.WithTimeout(c, rtu.contextTimeout)
+        defer cancel()
+        return rtu.userRepository.FindByID(ctx, id)
+}</span>
+
+func (rtu *refreshTokenUsecase) GetUserByEmail(c context.Context, email string) (*domain.User, error) <span class="cov4" title="2">{
+        ctx, cancel := context.WithTimeout(c, rtu.contextTimeout)
+        defer cancel()
+        return rtu.userRepository.FindByEmail(ctx, email)
+}</span>
+
+func (rtu *refreshTokenUsecase) CreateAccessToken(user *domain.User, secret string, expiry int) (accessToken string, err error) <span class="cov1" title="1">{
+        return tokenutil.CreateAccessToken(user, secret, expiry)
+}</span>
+
+func (rtu *refreshTokenUsecase) CreateRefreshToken(user *domain.User, secret string, expiry int) (refreshToken string, err error) <span class="cov4" title="2">{
+        return tokenutil.CreateRefreshToken(user, secret, expiry)
+}</span>
+
+func (rtu *refreshTokenUsecase) ExtractIDFromToken(requestToken string, secret string) (int, error) <span class="cov1" title="1">{
+        return tokenutil.ExtractIDFromToken(requestToken, secret)
+}</span>
+</pre>
+		
+		<pre class="file" id="file3" style="display: none">package usecase
+
+import (
+        "context"
+        "time"
+
+        "github.com/jordanlanch/ionix-test/domain"
+        "github.com/jordanlanch/ionix-test/internal/tokenutil"
+)
+
+type signupUsecase struct {
+        userRepository domain.UserRepository
+        contextTimeout time.Duration
+}
+
+func NewSignupUsecase(userRepository domain.UserRepository, timeout time.Duration) domain.SignupUsecase <span class="cov10" title="7">{
+        return &amp;signupUsecase{
+                userRepository: userRepository,
+                contextTimeout: timeout,
+        }
+}</span>
+
+func (su *signupUsecase) Create(ctx context.Context, user *domain.User) (*domain.User, error) <span class="cov4" title="2">{
+        ctx, cancel := context.WithTimeout(ctx, su.contextTimeout)
+        defer cancel()
+        return su.userRepository.Create(ctx, user)
+}</span>
+
+func (su *signupUsecase) GetUserByID(ctx context.Context, id int) (*domain.User, error) <span class="cov0" title="0">{
+        ctx, cancel := context.WithTimeout(ctx, su.contextTimeout)
+        defer cancel()
+        return su.userRepository.FindByID(ctx, id)
+}</span>
+
+func (su *signupUsecase) GetUserByEmail(ctx context.Context, email string) (*domain.User, error) <span class="cov4" title="2">{
+        ctx, cancel := context.WithTimeout(ctx, su.contextTimeout)
+        defer cancel()
+        return su.userRepository.FindByEmail(ctx, email)
+}</span>
+
+func (su *signupUsecase) CreateAccessToken(user *domain.User, secret string, expiry int) (accessToken string, err error) <span class="cov1" title="1">{
+        return tokenutil.CreateAccessToken(user, secret, expiry)
+}</span>
+
+func (su *signupUsecase) CreateRefreshToken(user *domain.User, secret string, expiry int) (refreshToken string, err error) <span class="cov1" title="1">{
+        return tokenutil.CreateRefreshToken(user, secret, expiry)
+}</span>
+</pre>
+		
+		<pre class="file" id="file4" style="display: none">package usecase
+
+import (
+        "context"
+        "time"
+
+        "github.com/jordanlanch/ionix-test/domain"
+)
+
+type vaccinationUsecase struct {
+        vaccinationRepo domain.VaccinationRepository
+        timeout         time.Duration
+}
+
+func NewVaccinationUsecase(vr domain.VaccinationRepository, timeout time.Duration) domain.VaccinationUsecase <span class="cov10" title="4">{
+        return &amp;vaccinationUsecase{
+                vaccinationRepo: vr,
+                timeout:         timeout,
+        }
+}</span>
+
+func (vu *vaccinationUsecase) CreateVaccination(ctx context.Context, vac *domain.Vaccination) error <span class="cov5" title="2">{
+        ctx, cancel := context.WithTimeout(ctx, vu.timeout)
+        defer cancel()
+        return vu.vaccinationRepo.Create(ctx, vac)
+}</span>
+
+func (vu *vaccinationUsecase) UpdateVaccination(ctx context.Context, id int, vac *domain.Vaccination) error <span class="cov5" title="2">{
+        ctx, cancel := context.WithTimeout(ctx, vu.timeout)
+        defer cancel()
+        return vu.vaccinationRepo.Update(ctx, id, vac)
+}</span>
+
+func (vu *vaccinationUsecase) GetVaccinationById(ctx context.Context, id int) (*domain.Vaccination, error) <span class="cov0" title="0">{
+        ctx, cancel := context.WithTimeout(ctx, vu.timeout)
+        defer cancel()
+        return vu.vaccinationRepo.FindByID(ctx, id)
+}</span>
+
+func (vu *vaccinationUsecase) GetAllVaccinations(ctx context.Context, pagination *domain.Pagination) ([]*domain.Vaccination, error) <span class="cov5" title="2">{
+        ctx, cancel := context.WithTimeout(ctx, vu.timeout)
+        defer cancel()
+        return vu.vaccinationRepo.FindAll(ctx, pagination)
+}</span>
+
+func (vu *vaccinationUsecase) DeleteVaccination(ctx context.Context, id int) error <span class="cov5" title="2">{
+        ctx, cancel := context.WithTimeout(ctx, vu.timeout)
+        defer cancel()
+        return vu.vaccinationRepo.Delete(ctx, id)
+}</span>
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>
